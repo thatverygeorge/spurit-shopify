@@ -1,0 +1,150 @@
+<footer class="footer">
+      <div class="footer__wrapper">
+        <div class="footer__section-wrapper">
+          <h2 class="heading heading--xl footer__heading">about</h2>
+          <address class="footer__store-info">
+            susparsa store
+            <br />
+            geneva, switzerland
+          </address>
+          <ul
+            class="social-links footer__social-links"
+            role="list"
+            aria-label="social links"
+          >
+            <li class="social-links__item social-links__item--facebook">
+              <a
+                href="https://www.facebook.com/Susparsa-106591638503740"
+                target="_blank"
+              >
+                <span class="visually-hidden">
+                  our facebook page — opens in a new tab
+                </span>
+              </a>
+            </li>
+            <li class="social-links__item social-links__item--instagram">
+              <a href="https://www.instagram.com/susparsa/" target="_blank">
+                <span class="visually-hidden">
+                  our instagram page — opens in a new tab
+                </span>
+              </a>
+            </li>
+          </ul>
+          <small class="footer__copyright">© Susparsa 2021</small>
+        </div>
+
+        <div class="footer__section-wrapper">
+          <h2 class="heading heading--xl footer__heading">company</h2>
+          <ul
+            class="footer-navigation-list footer__navigation-list"
+            role="list"
+          >
+            <li class="footer-navigation-list__item">
+              <a href="/women">women</a>
+            </li>
+            <li class="footer-navigation-list__item">
+              <a href="/men">men</a>
+            </li>
+            <li class="footer-navigation-list__item">
+              <a href="/kids">kids</a>
+            </li>
+            <li class="footer-navigation-list__item">
+              <a href="/about-us">about us</a>
+            </li>
+            <li class="footer-navigation-list__item">
+              <a href="/our-materials">our materials</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer__section-wrapper">
+          <h2 class="heading heading--xl footer__heading">useful links</h2>
+          <ul
+            class="footer-navigation-list footer__navigation-list"
+            role="list"
+          >
+            <li class="footer-navigation-list__item">
+              <a href="/privacy-policy">privacy policy</a>
+            </li>
+            <li class="footer-navigation-list__item">
+              <a href="/shipping-policy">shipping policy</a>
+            </li>
+            <li class="footer-navigation-list__item">
+              <a href="/return-and-refund-policy">return & refund policy</a>
+            </li>
+            <li class="footer-navigation-list__item">
+              <a href="/terms-of-service">
+                terms
+                <span style="text-transform: none">of</span>
+                service
+              </a>
+            </li>
+            <li class="footer-navigation-list__item">
+              <a href="/contact-us">contact us</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+{% schema %}
+  {
+    "name": "Alternate footer",
+	"max_blocks": 4,
+    "settings": [],
+    "blocks": [
+       {
+         "name": "About",
+         "type": "footer_about",
+         "settings": [
+            {
+              "type": "text",
+              "id": "footer_about_heading",
+              "label": "Heading",
+              "default": "About"
+            },
+            {
+              "type": "richtext",
+              "id": "footer_about_text",
+              "label": "Text"
+            },
+            {
+              "type": "text",
+              "id": "footer_about_facebook_link",
+              "label": "Facebook link",
+              "default": "Facebook"
+            },
+            {
+              "type": "text",
+              "id": "footer_about_instagram_link",
+              "label": "Instagram link",
+              "default": "Instagram"
+            }
+         ]
+       },
+       {
+         "name": "Menu",
+         "type": "footer_menu",
+         "settings": [
+            {
+              "type": "text",
+              "id": "footer_menu_heading",
+              "label": "Heading",
+              "default": "Useful links"
+            },
+            {
+              "type": "link_list",
+              "id": "footer_menu_link_list",
+              "label": "Menu"
+            }
+         ]
+       }
+     ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

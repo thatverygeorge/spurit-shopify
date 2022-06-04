@@ -1,0 +1,50 @@
+{
+  "layout": "theme.alternate",
+  "sections": {
+    "16541737975ae67596": {
+      "type": "alternate-main-product",
+      "blocks": {
+        "165417379735fa0277-0": {
+          "type": "product_accordion",
+          "settings": {
+            "product_accordion_heading": "Sizing & Fit",
+            "product_accordion_text": ""
+          }
+        },
+        "165417379735fa0277-1": {
+          "type": "product_accordion",
+          "settings": {
+            "product_accordion_heading": "Sizing & Fit",
+            "product_accordion_text": ""
+          }
+        },
+        "165417379735fa0277-2": {
+          "type": "product_accordion",
+          "settings": {
+            "product_accordion_heading": "Sizing & Fit",
+            "product_accordion_text": ""
+          }
+        }
+      },
+      "block_order": [
+        "165417379735fa0277-0",
+        "165417379735fa0277-1",
+        "165417379735fa0277-2"
+      ],
+      "settings": {
+      }
+    },
+    "16541737961a690bbb": {
+      "type": "alternate-product-recommendations",
+      "settings": {
+        "recommendations_heading": "You may also like",
+        "recommendations_collection": "hoodies",
+        "recommendations_number_of_products": 6
+      }
+    }
+  },
+  "order": [
+    "16541737975ae67596",
+    "16541737961a690bbb"
+  ]
+}
