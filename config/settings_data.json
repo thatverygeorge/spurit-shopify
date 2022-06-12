@@ -155,6 +155,18 @@
         "settings": {
           "color_scheme": "background-1"
         }
+      },
+      "alternate-header": {
+        "type": "alternate-header",
+        "settings": {
+          "header_logo_image": "shopify:\/\/shop_images\/logo-susparsa.png",
+          "header_menu": ""
+        }
+      },
+      "alternate-footer": {
+        "type": "alternate-footer",
+        "settings": {
+        }
       }
     },
     "content_for_index": [
