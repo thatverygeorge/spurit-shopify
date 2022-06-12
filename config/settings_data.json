@@ -160,7 +160,7 @@
         "type": "alternate-header",
         "settings": {
           "header_logo_image": "shopify:\/\/shop_images\/logo-susparsa.png",
-          "header_menu": ""
+          "header_menu": "alternate-header-menu"
         }
       },
       "alternate-footer": {
