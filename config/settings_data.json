@@ -165,6 +165,21 @@
       },
       "alternate-footer": {
         "type": "alternate-footer",
+        "blocks": {
+          "e4f15511-f605-4964-a5c3-bd3d829038d9": {
+            "type": "footer_about",
+            "settings": {
+              "footer_about_heading": "About",
+              "footer_about_text": "<p>Susparsa Store<br\/>Geneva, Switzerland<br\/><\/p>",
+              "footer_about_facebook_link": "https:\/\/www.facebook.com\/Susparsa-106591638503740",
+              "footer_about_instagram_link": "https:\/\/www.instagram.com\/susparsa\/",
+              "footer_about_copyright": "© Susparsa 2021"
+            }
+          }
+        },
+        "block_order": [
+          "e4f15511-f605-4964-a5c3-bd3d829038d9"
+        ],
         "settings": {
         }
       }
