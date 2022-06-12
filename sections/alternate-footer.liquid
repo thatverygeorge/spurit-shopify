@@ -1,53 +1,13 @@
 <footer class="footer">
   <div class="footer__wrapper">
-    {%- assign about_blocks = section.blocks | where: "type", "footer_about" -%}
-    {%- if about_blocks.size > 0 -%}
-      {%- for block in about_blocks -%}
-        <div class="footer__section-wrapper">
-          <h2 class="footer__heading">{{ block.settings.footer_about_heading }}</h2>
-          <address class="footer__store-info">
-            {{ block.settings.footer_about_text }}
-          </address>
-          <ul
-            class="social-links footer__social-links"
-            role="list"
-            aria-label="social links"
-          >
-            <li class="social-links__item social-links__item--facebook">
-              <a
-                href="{{ block.settings.footer_about_facebook_link }}"
-                target="_blank"
-              >
-                <span class="visually-hidden">our facebook page — opens in a new tab</span>
-              </a>
-            </li>
-            <li class="social-links__item social-links__item--instagram">
-              <a href="{{ block.settings.footer_about_instagram_link }}" target="_blank">
-                <span class="visually-hidden">our instagram page — opens in a new tab</span>
-              </a>
-            </li>
-          </ul>
-          <small class="footer__copyright">{{ block.settings.footer_about_copyright }}</small>
-        </div>
-      {%- endfor -%}
-    {%- endif -%}
-
-    {%- assign menu_blocks = section.blocks | where: "type", "footer_menu" -%}
-    {%- if menu_blocks.size > 0 -%}
-      {%- for block in menu_blocks -%}
-        <div class="footer__section-wrapper">
-          <h2 class="footer__heading">{{ block.settings.footer_menu_heading }}</h2>
-          <ul
-            class="footer-navigation-list footer__navigation-list"
-            role="list"
-          >
-            {%- for link in block.settings.footer_menu_link_list.links -%}
-              <li class="footer-navigation-list__item">
-                <a href="{{ link.url }}">{{ link.title }}</a>
-              </li>
-            {%- endfor -%}
-          </ul>
-        </div>
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'footer_about' -%}
+            {%- render 'block-footer-about', block: block -%}
+          {%- when 'footer_menu' -%}
+            {%- render 'block-footer-menu', block: block -%}
+        {%- endcase -%}
       {%- endfor -%}
     {%- endif -%}
   </div>
