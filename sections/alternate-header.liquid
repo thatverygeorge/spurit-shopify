@@ -14,11 +14,11 @@
     </a>
     <nav class="site-navigation header__site-navigation" aria-label="main">
       <ul class="site-navigation__list" role="list">
-        {% for link in section.settings.header_menu.links %}
+        {%- for link in section.settings.header_menu.links -%}
           <li class="site-navigation__item">
             <a href="{{ link.url }}">{{ link.title }}</a>
           </li>
-        {% endfor %}
+        {%- endfor -%}
         <li class="site-navigation__item">
           <a href="/search">search</a>
         </li>

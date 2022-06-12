@@ -299,6 +299,10 @@ a:hover {
   text-transform: capitalize;
 }
 
+.footer__store-info p {
+  margin: 0;
+}
+
 .footer__social-links {
   margin: 0;
 }
@@ -327,7 +331,6 @@ a:hover {
   line-height: 2;
   letter-spacing: 1px;
   color: var(--tertiary-1);
-  text-transform: capitalize;
 }
 
 .footer-navigation-list__item a:focus-visible,
