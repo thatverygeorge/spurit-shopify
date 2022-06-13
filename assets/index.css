@@ -608,6 +608,10 @@ a:hover {
   margin-bottom: 40px;
 }
 
+.product-description__description-definition div > p {
+  margin: 0;
+}
+
 /* ORDER DETAILS FORM */
 
 .order-details {
