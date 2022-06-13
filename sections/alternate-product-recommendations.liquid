@@ -9,12 +9,13 @@
     {{ section.settings.recommendations_heading }}
   </h2>
 
-  {%- if section.settings.recommendations_collection.all_products_count > 0 -%}
+  {%- assign collection = section.settings.recommendations_collection -%}
+  {%- if collection.all_products_count > 0 -%}
     <ul
       class="product-carousel you-may-also-like__product-carousel"
       role="list"
     >
-      {%- for product in section.settings.recommendations_collection.products limit: section.settings.recommendations_number_of_products -%}
+      {%- for product in collection.products limit: section.settings.recommendations_number_of_products -%}
         {%- render 'alternate-product-card', product: product -%}
       {%- endfor -%}
     </ul>
@@ -51,8 +52,8 @@
       "name": "Alternate recommendations",
       "settings": {
         "recommendations_heading": "You may also like",
-        "recommendations_collection": "hoodies",
-        "recommendations_number_of_products": 6
+        "recommendations_collection": "everything-everywhere-all-at-once",
+        "recommendations_number_of_products": 4
       }
     }
   ]

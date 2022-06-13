@@ -274,14 +274,14 @@
               class="order-details-form__button order-details-form__button--add-to-cart"
             >
               add
-              <span class="visually-hidden">white unisex t-shirt</span>
+              <span class="visually-hidden">{{ product.title | downcase }}</span>
               to cart
             </button>
             <button
               type="submit"
               class="order-details-form__button order-details-form__button--blue"
             >
-              <span class="visually-hidden">white unisex t-shirt — </span>
+              <span class="visually-hidden">{{ product.title | downcase }} — </span>
               buy it now
             </button>
           </form>
