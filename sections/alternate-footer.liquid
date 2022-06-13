@@ -4,9 +4,9 @@
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'footer_about' -%}
-            {%- render 'block-footer-about', block: block -%}
+            {%- render 'alternate-footer-about', block: block -%}
           {%- when 'footer_menu' -%}
-            {%- render 'block-footer-menu', block: block -%}
+            {%- render 'alternate-footer-menu', block: block -%}
         {%- endcase -%}
       {%- endfor -%}
     {%- endif -%}

@@ -1,11 +1,11 @@
 <section
         class="main__wrapper"
-        aria-labelledby="heading-white-unisex-t-shirt"
+        aria-labelledby="heading-{{ product.handle }}"
       >
         <div class="order-details main__order-details">
           <h1
             class="order-details__heading"
-            id="heading-white-unisex-t-shirt"
+            id="heading-{{ product.handle }}"
           >
             {{ product.title }}
           </h1>
@@ -304,7 +304,7 @@
           {%- if accordions.size > 0 -%}
             <div class="product-description__wrapper">
               {%- for block in accordions -%}
-                {%- render 'block-accordion', block: block -%}
+                {%- render 'alternate-accordion', block: block -%}
               {%- endfor -%}
             </div>
           {%- endif -%}
