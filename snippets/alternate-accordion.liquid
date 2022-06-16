@@ -1,0 +1,15 @@
+<dl class="product-description__description-list">
+  <dt class="product-description__description-term">
+    <button
+      class="product-description__button"
+      type="button"
+      aria-expanded="false"
+      aria-controls="description-{{ block.id }}"
+    >
+      {{ block.settings.product_accordion_heading }}
+    </button>
+  </dt>
+  <dd class="product-description__description-definition">
+    <div id="description-{{ block.id }}">{{ block.settings.product_accordion_text }}</div>
+  </dd>
+</dl>

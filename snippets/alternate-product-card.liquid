@@ -1,0 +1,60 @@
+<li class="product-carousel__item">
+  <article class="product-card product-carousel__product-card">
+    <h3 class="product-card__heading">
+      <a href="{{ product.url }}">{{ product.title }}</a>
+    </h3>
+    <img
+      class="product-card__image"
+      src="{{ product.featured_image | image_url }}"
+      width="248"
+      height="368"
+      alt=""
+      role="presentation"
+      loading="lazy"
+    >
+    <ul
+      class="available-colors-list product-card__available-colors-list"
+      role="list"
+      aria-label="available colors"
+    >
+      <li class="available-colors-list__item available-colors-list__item--brown">
+        <span class="visually-hidden">
+          <span class="visually-hidden">{{ product.title }} color:</span>
+          brown
+        </span>
+      </li>
+      <li class="available-colors-list__item available-colors-list__item--beige">
+        <span class="visually-hidden">
+          <span class="visually-hidden">{{ product.title }} color:</span>
+          beige
+        </span>
+      </li>
+      <li class="available-colors-list__item available-colors-list__item--pink">
+        <span class="visually-hidden">
+          <span class="visually-hidden">{{ product.title }} color:</span>
+          pink
+        </span>
+      </li>
+      <li class="available-colors-list__item available-colors-list__item--purple">
+        <span class="visually-hidden">
+          <span class="visually-hidden">{{ product.title }} color:</span>
+          purple
+        </span>
+      </li>
+    </ul>
+    <span class="product-card__price">
+      <span class="visually-hidden">{{ product.title }} price:</span>
+      {{ shop.currency }}
+      {{ product.price | money_without_trailing_zeros }}
+    </span>
+    {%- unless product.available -%}
+      <ul
+        class="tags-list product-card__tags-list"
+        role="list"
+        aria-label="tags"
+      >
+        <li class="tags-list__item">Sold out</li>
+      </ul>
+    {%- endunless -%}
+  </article>
+</li>

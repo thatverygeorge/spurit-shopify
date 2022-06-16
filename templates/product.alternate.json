@@ -8,21 +8,21 @@
           "type": "product_accordion",
           "settings": {
             "product_accordion_heading": "Sizing & Fit",
-            "product_accordion_text": ""
+            "product_accordion_text": "<p>Olga is 175cm, she is wearing a size S.</p>"
           }
         },
         "165417379735fa0277-1": {
           "type": "product_accordion",
           "settings": {
-            "product_accordion_heading": "Sizing & Fit",
-            "product_accordion_text": ""
+            "product_accordion_heading": "Composition & Care",
+            "product_accordion_text": "<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>"
           }
         },
         "165417379735fa0277-2": {
           "type": "product_accordion",
           "settings": {
-            "product_accordion_heading": "Sizing & Fit",
-            "product_accordion_text": ""
+            "product_accordion_heading": "Delivery & Returns",
+            "product_accordion_text": "<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p>"
           }
         }
       },
@@ -31,20 +31,16 @@
         "165417379735fa0277-1",
         "165417379735fa0277-2"
       ],
-      "settings": {
-      }
+      "settings": {}
     },
     "16541737961a690bbb": {
       "type": "alternate-product-recommendations",
       "settings": {
         "recommendations_heading": "You may also like",
-        "recommendations_collection": "hoodies",
-        "recommendations_number_of_products": 6
+        "recommendations_collection": "everything-everywhere-all-at-once",
+        "recommendations_number_of_products": 4
       }
     }
   },
-  "order": [
-    "16541737975ae67596",
-    "16541737961a690bbb"
-  ]
+  "order": ["16541737975ae67596", "16541737961a690bbb"]
 }

@@ -4,20 +4,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="https://thatverygeorge.github.io/spurit-a11y/index.css">
-
+    <link rel="stylesheet" href="{{ 'index.css' | asset_url }}">
     {{ content_for_header }}
   </head>
 
   <body>
-    {% section 'alternate-header' %}
+    {%- section 'alternate-header' -%}
 
     <main class="main" id="main">
       {{ content_for_layout }}
     </main>
 
-    {% section 'alternate-footer' %}
+    {%- section 'alternate-footer' -%}
 
-    <script src="https://thatverygeorge.github.io/spurit-a11y/index.js" defer></script>
+    <script src="{{ 'index.js' | asset_url }}" defer></script>
   </body>
 </html>

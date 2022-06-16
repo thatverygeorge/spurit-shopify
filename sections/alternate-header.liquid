@@ -1,92 +1,84 @@
 <header class="header">
-      <div class="header__wrapper">
-        <a class="skip-to-content-link" href="#main">skip to content</a>
-        <a class="header__logo" href="/home">
-          <img
-            src="https://thatverygeorge.github.io/spurit-a11y/img/logo-susparsa.png"
-            width="139"
-            height="32"
-            alt=""
-            role="presentation"
-          />
-          <span class="visually-hidden">home</span>
-        </a>
-        <nav class="site-navigation header__site-navigation" aria-label="main">
-          <ul class="site-navigation__list" role="list">
-            <li class="site-navigation__item">
-              <a href="/women">women</a>
-            </li>
-            <li class="site-navigation__item">
-              <a href="/men">men</a>
-            </li>
-            <li class="site-navigation__item">
-              <a href="/kids">kids</a>
-            </li>
-            <li class="site-navigation__item">
-              <a href="/company">company</a>
-            </li>
-            <li class="site-navigation__item">
-              <a href="/search">search</a>
-            </li>
-            <li class="site-navigation__item">
-              <a href="/account">account</a>
-            </li>
-            <li class="site-navigation__item site-navigation__item--cart">
-              <a href="/cart">
-                <span aria-hidden="true">cart (0)</span>
-                <span class="visually-hidden" aria-live="polite" role="status">
-                  items in cart: 0
-                </span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
+  <div class="header__wrapper">
+    <a class="skip-to-content-link" href="#main">skip to content</a>
+    <a class="header__logo" href="/">
+      <img
+        src="{{ section.settings.header_logo_image | image_url }}"
+        width="139"
+        height="32"
+        alt=""
+        role="presentation"
+        loading="lazy"
+      >
+      <span class="visually-hidden">home</span>
+    </a>
+    <nav class="site-navigation header__site-navigation" aria-label="main">
+      <ul class="site-navigation__list" role="list">
+        {%- for link in section.settings.header_menu.links -%}
+          <li class="site-navigation__item">
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+        {%- endfor -%}
+        <li class="site-navigation__item">
+          <a href="/search">search</a>
+        </li>
+        <li class="site-navigation__item">
+          <a href="/account">account</a>
+        </li>
+        <li class="site-navigation__item site-navigation__item--cart">
+          <a href="/cart">
+            <span aria-hidden="true">cart (0)</span>
+            <span class="visually-hidden" aria-live="polite" role="status"> items in cart: 0 </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 
-      <hr class="header__horizontal-rule" />
+  <hr class="header__horizontal-rule">
 
-      <div class="header__wrapper">
-        <nav
-          class="breadcrumbs-navigation header__breadcrumbs-navigation"
-          aria-label="breadcrumbs"
-        >
-          <ol class="breadcrumbs-navigation__list" role="list">
-            <li class="breadcrumbs-navigation__item">
-              <a href="/home">Home</a>
-            </li>
-            <li class="breadcrumbs-navigation__item">
-              <a href="/women">Women</a>
-            </li>
-            <li class="breadcrumbs-navigation__item">
-              <a role="link" aria-disabled="true" aria-current="page">
-                {{ product.title }}
-              </a>
-            </li>
-          </ol>
-        </nav>
-      </div>
-    </header>
+  <div class="header__wrapper">
+    <nav
+      class="breadcrumbs-navigation header__breadcrumbs-navigation"
+      aria-label="breadcrumbs"
+    >
+      <ol class="breadcrumbs-navigation__list" role="list">
+        <li class="breadcrumbs-navigation__item">
+          <a href="/home">Home</a>
+        </li>
+        <li class="breadcrumbs-navigation__item">
+          <a href="/women">Women</a>
+        </li>
+        <li class="breadcrumbs-navigation__item">
+          <a role="link" aria-disabled="true" aria-current="page">
+            {{ product.title }}
+          </a>
+        </li>
+      </ol>
+    </nav>
+  </div>
+</header>
 
 {% schema %}
-  {
-    "name": "Alternate header",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "header_logo_image",
-        "label": "Logo image"
-      },
-      {
-        "type": "link_list",
-        "id": "header_menu",
-        "label": "Menu"
-      }
-	]
-  }
+{
+  "name": "Alternate header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "header_logo_image",
+      "label": "Logo image"
+    },
+    {
+      "type": "link_list",
+      "id": "header_menu",
+      "label": "Menu"
+    }
+  ]
+}
 {% endschema %}
 
-{% stylesheet %}
-{% endstylesheet %}
+{% style sheet %}{% endstyle %}
 
 {% javascript %}
+
 {% endjavascript %}

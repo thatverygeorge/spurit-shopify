@@ -1,11 +1,11 @@
 <section
         class="main__wrapper"
-        aria-labelledby="heading-white-unisex-t-shirt"
+        aria-labelledby="heading-{{ product.handle }}"
       >
         <div class="order-details main__order-details">
           <h1
-            class="heading heading--2xl order-details__heading"
-            id="heading-white-unisex-t-shirt"
+            class="order-details__heading"
+            id="heading-{{ product.handle }}"
           >
             {{ product.title }}
           </h1>
@@ -274,138 +274,90 @@
               class="order-details-form__button order-details-form__button--add-to-cart"
             >
               add
-              <span class="visually-hidden">white unisex t-shirt</span>
+              <span class="visually-hidden">{{ product.title | downcase }}</span>
               to cart
             </button>
             <button
               type="submit"
               class="order-details-form__button order-details-form__button--blue"
             >
-              <span class="visually-hidden">white unisex t-shirt — </span>
+              <span class="visually-hidden">{{ product.title | downcase }} — </span>
               buy it now
             </button>
           </form>
 
-          <p class="order-details__description">
-  			{{ product.description | strip_html }}
-            <br />
-            <br />
-            Certification of cotton - GOTS
-          </p>
+  			  {{ product.description }}
         </div>
 
         <div class="product-description main__product-description">
           <img
             class="product-description__image"
-            src="{{ product | image_url }}"
+            src="{{ product.featured_image | image_url }}"
             width="473"
             height="707"
             alt=""
             role="presentation"
+            loading="lazy"
           />
 
-          <div class="product-description__wrapper">
-            <dl class="product-description__description-list">
-              <dt class="product-description__description-term">
-                <button
-                  class="product-description__button"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="description-1"
-                >
-                  sizing & fit
-                </button>
-              </dt>
-              <dd class="product-description__description-definition">
-                <div id="description-1">
-                  Olga is 175cm, she is wearing a size S.
-                </div>
-              </dd>
-            </dl>
-
-            <dl class="product-description__description-list">
-              <dt class="product-description__description-term">
-                <button
-                  class="product-description__button"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="description-2"
-                >
-                  composition & care
-                </button>
-              </dt>
-              <dd class="product-description__description-definition">
-                <div id="description-2">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                </div>
-              </dd>
-            </dl>
-
-            <dl class="product-description__description-list">
-              <dt class="product-description__description-term">
-                <button
-                  class="product-description__button"
-                  type="button"
-                  aria-expanded="false"
-                  aria-controls="description-3"
-                >
-                  delivery & returns
-                </button>
-              </dt>
-              <dd class="product-description__description-definition">
-                <div id="description-3">
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                </div>
-              </dd>
-            </dl>
-          </div>
+          {%- assign accordions = section.blocks | where: "type", "product_accordion" -%}
+          {%- if accordions.size > 0 -%}
+            <div class="product-description__wrapper">
+              {%- for block in accordions -%}
+                {%- render 'alternate-accordion', block: block -%}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
       </section>
-  
+
 
 
 {% schema %}
-  {
-    "name": "Product",
-	"limit": 1,
-	"templates": ["product"],
-    "settings": [],
-	"blocks": [
-	  {
-		"name": "Accordion",
-		"type": "product_accordion",
-		"settings": [
-          {
-            "type": "text",
-              "id": "product_accordion_heading",
-              "label": "Heading",
-              "default": "Sizing & Fit"
-            },
-            {
-              "type": "richtext",
-              "id": "product_accordion_text",
-              "label": "Text"
-            }
-		]
-	  }
-	],
-    "presets": [
-     {
-       "name": "Alternate product",
-       "settings": {},
-       "blocks": [
-         {
-           "type": "product_accordion"
-         },
-         {
-           "type": "product_accordion"
-         },
-         {
-           "type": "product_accordion"
-         }
-       ]
-     }
-   ]
-  }
+{
+  "name": "Product",
+  "limit": 1,
+  "templates": [
+    "product"
+  ],
+  "settings": [],
+  "blocks": [
+    {
+      "name": "Accordion",
+      "type": "product_accordion",
+      "settings": [
+        {
+          "type": "text",
+          "id": "product_accordion_heading",
+          "label": "Heading",
+          "default": "Sizing & Fit"
+        },
+        {
+          "type": "richtext",
+          "id": "product_accordion_text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Alternate product",
+      "settings": {
+      },
+      "blocks": [
+        {
+          "type": "product_accordion"
+        },
+        {
+          "type": "product_accordion"
+        },
+        {
+          "type": "product_accordion"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
 
 {% stylesheet %}
