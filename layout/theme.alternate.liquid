@@ -17,6 +17,12 @@
 
     {%- section 'alternate-footer' -%}
 
-    <script src="{{ 'index.js' | asset_url }}" defer></script>
+    <script src="{{ 'theme-sections.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'alternate-main-product.js' | asset_url }}" defer></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        Shopify.theme.sections.load('alternate-main-product');
+      });
+    </script>
   </body>
 </html>
