@@ -20,13 +20,13 @@
           </li>
         {%- endfor -%}
         <li class="site-navigation__item">
-          <a href="/search">search</a>
+          <a href="{{ routes.search_url }}">search</a>
         </li>
         <li class="site-navigation__item">
-          <a href="/account">account</a>
+          <a href="{{ routes.account_url }}">account</a>
         </li>
         <li class="site-navigation__item site-navigation__item--cart">
-          <a href="/cart">
+          <a href="{{ routes.cart_url }}">
             <span aria-hidden="true">cart (0)</span>
             <span class="visually-hidden" aria-live="polite" role="status"> items in cart: 0 </span>
           </a>
