@@ -80,7 +80,7 @@ class QuantityPicker {
     this.buttonIncrease = buttonIncrease;
 
     this.input = this.fieldset.querySelector('input[type=number]');
-    this.error = this.fieldset.querySelector('[aria-live=polite][role=alert]');
+    this.error = this.fieldset.querySelector('span[class$=error--quantity]');
   }
 
   init() {
@@ -172,47 +172,13 @@ class QuantityPicker {
   }
 }
 
-// CART
-class Cart {
-  constructor(item, button, quantityPicker) {
-    this.item = item;
-    this.button = button;
-    this.quantityPicker = quantityPicker;
-
-    this.cart = this.item.querySelector('[aria-hidden=true]');
-    this.accessibilityCart = this.item.querySelector(
-      '[aria-live=polite][role=status]'
-    );
-  }
-
-  init() {
-    this.button.addEventListener('click', this.handleAddToCart.bind(this));
-  }
-
-  destroy() {
-    this.button.removeEventListener('click', this.handleAddToCart);
-  }
-
-  addItemsToCart(quantity) {
-    this.cart.textContent = `cart (${quantity})`;
-    this.accessibilityCart.textContent = `items in cart: ${quantity}`;
-  }
-
-  handleAddToCart() {
-    const quantity = this.quantityPicker.getInputValue();
-
-    if (QuantityPicker.isQuantityValidForCart(quantity)) {
-      this.quantityPicker.hideError();
-      this.addItemsToCart(quantity);
-    }
-  }
-}
-
 // FORM
 class Form {
   constructor(form, quantityPicker) {
     this.form = form;
     this.quantityPicker = quantityPicker;
+
+    this.error = this.form.querySelector('span[class$=error--form]');
   }
 
   init() {
@@ -223,16 +189,55 @@ class Form {
     this.form.removeEventListener('submit', this.handleSubmit);
   }
 
+  showError(message = 'Something went wrong. Please try again later.') {
+    this.error.textContent = message;
+    this.error.classList.add('active');
+  }
+
+  hideError() {
+    this.error.textContent = '';
+    this.error.classList.remove('active');
+  }
+
   handleSubmit(evt) {
     evt.preventDefault();
     this.quantityPicker.hideError();
+    this.hideError();
 
-    const data = new FormData(evt.target);
+    const formData = new FormData(evt.target);
+    const id = formData.get('id');
+    const quantity = formData.get('quantity');
 
-    const size = data.get('size');
-    const color = data.get('color');
-    const quantity = Number(data.get('quantity'));
-    console.log({ size, color, quantity });
+    fetch(Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        items: [{ id, quantity }],
+        sections: 'alternate-header',
+      }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        if (data.sections) {
+          const event = new CustomEvent('cart:added', {
+            detail: {
+              updatedHeader: data.sections['alternate-header'],
+            },
+          });
+
+          window.dispatchEvent(event);
+        } else {
+          const message = `${data.message} (${data.status}): ${data.description}`;
+          throw new Error(message);
+        }
+      })
+      .catch((error) => {
+        this.showError(error);
+      });
   }
 }
 
@@ -240,7 +245,6 @@ Shopify.theme.sections.register('alternate-main-product', {
   accordions: {},
   colorPicker: null,
   quantityPicker: null,
-  cart: null,
   form: null,
 
   onLoad: function () {
@@ -278,14 +282,6 @@ Shopify.theme.sections.register('alternate-main-product', {
     );
     this.quantityPicker.init();
 
-    const cartItem = document.querySelector('.site-navigation__item--cart');
-    const buttonAddToCart = document.querySelector(
-      '.order-details-form__button--add-to-cart'
-    );
-
-    this.cart = new Cart(cartItem, buttonAddToCart, this.quantityPicker);
-    this.cart.init();
-
     const formNode = document.querySelector('.order-details-form');
 
     this.form = new Form(formNode, this.quantityPicker);
@@ -299,7 +295,6 @@ Shopify.theme.sections.register('alternate-main-product', {
 
     this.colorPicker.destroy();
     this.quantityPicker.destroy();
-    this.cart.destroy();
     this.form.destroy();
   },
 

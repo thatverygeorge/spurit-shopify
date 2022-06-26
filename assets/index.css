@@ -804,7 +804,7 @@ a:hover {
   opacity: 0.3;
 }
 
-.order-details-form__quantity-error {
+.order-details-form__error {
   flex-basis: 100%;
   display: block;
   font-size: 18px;
@@ -813,8 +813,12 @@ a:hover {
   color: var(--tertiary-3);
 }
 
-.order-details-form__quantity-error.active {
+.order-details-form__error--quantity.active {
   padding-top: 8px;
+}
+
+.order-details-form__error--form.active {
+  padding-bottom: 8px;
 }
 
 .order-details-form__fieldset--size,
