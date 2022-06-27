@@ -17,11 +17,12 @@
           </span>
           <span class="order-details__tax-info">tax included</span>
 
-          <form
-            class="order-details-form order-details__form"
-            action="/cart"
-            aria-label="order details"
-          >
+          {%- form 'product',
+            product,
+            class: 'order-details-form order-details__form',
+            aria-lable: 'order details'
+          -%}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
             <fieldset
               class="order-details-form__fieldset order-details-form__fieldset--size"
             >
@@ -264,7 +265,7 @@
                 <span aria-hidden="true">+</span>
               </button>
               <span
-                class="order-details-form__quantity-error"
+                class="order-details-form__error order-details-form__error--quantity"
                 aria-live="polite"
                 role="alert"
               >
@@ -272,21 +273,27 @@
             </fieldset>
 
             <button
-              type="button"
+              type="submit"
               class="order-details-form__button order-details-form__button--add-to-cart"
             >
               add
               <span class="visually-hidden">{{ product.title | downcase }}</span>
               to cart
             </button>
+            <span
+              class="order-details-form__error order-details-form__error--form"
+              aria-live="polite"
+              role="alert"
+            >
+            </span>
             <button
-              type="submit"
+              type="button"
               class="order-details-form__button order-details-form__button--blue"
             >
               <span class="visually-hidden">{{ product.title | downcase }} — </span>
               buy it now
             </button>
-          </form>
+          {%- endform -%}
 
   			  {{ product.description }}
         </div>

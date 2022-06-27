@@ -416,6 +416,12 @@ a:hover {
   position: relative;
 }
 
+.product-card:focus-within,
+.product-card:hover {
+  outline-offset: 8px;
+  outline: 2px solid var(--primary);
+}
+
 .product-card * {
   order: 2;
 }
@@ -438,7 +444,13 @@ a:hover {
 .product-card__heading a {
   display: inline-block;
   color: inherit;
-  outline-offset: 4px;
+  outline: none;
+}
+
+.product-card__heading a::before {
+  position: absolute;
+  content: '';
+  inset: 0;
 }
 
 .product-card__heading a::first-letter {
@@ -792,7 +804,7 @@ a:hover {
   opacity: 0.3;
 }
 
-.order-details-form__quantity-error {
+.order-details-form__error {
   flex-basis: 100%;
   display: block;
   font-size: 18px;
@@ -801,8 +813,12 @@ a:hover {
   color: var(--tertiary-3);
 }
 
-.order-details-form__quantity-error.active {
+.order-details-form__error--quantity.active {
   padding-top: 8px;
+}
+
+.order-details-form__error--form.active {
+  padding-bottom: 8px;
 }
 
 .order-details-form__fieldset--size,

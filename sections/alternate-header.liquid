@@ -1,4 +1,8 @@
-<header class="header">
+<header
+  class="header"
+  data-section-id="{{ section.id }}"
+  data-section-type="alternate-header"
+>
   <div class="header__wrapper">
     <a class="skip-to-content-link" href="#main">skip to content</a>
     <a class="header__logo" href="/">
@@ -20,15 +24,15 @@
           </li>
         {%- endfor -%}
         <li class="site-navigation__item">
-          <a href="/search">search</a>
+          <a href="{{ routes.search_url }}">search</a>
         </li>
         <li class="site-navigation__item">
-          <a href="/account">account</a>
+          <a href="{{ routes.account_url }}">account</a>
         </li>
         <li class="site-navigation__item site-navigation__item--cart">
-          <a href="/cart">
-            <span aria-hidden="true">cart (0)</span>
-            <span class="visually-hidden" aria-live="polite" role="status"> items in cart: 0 </span>
+          <a href="{{ routes.cart_url }}">
+            <span aria-hidden="true">cart ({{ cart.item_count }})</span>
+            <span class="visually-hidden" aria-live="polite" role="status">items in cart: {{ cart.item_count }}</span>
           </a>
         </li>
       </ul>
@@ -77,7 +81,7 @@
 }
 {% endschema %}
 
-{% style sheet %}{% endstyle %}
+{% style %}{% endstyle %}
 
 {% javascript %}
 
