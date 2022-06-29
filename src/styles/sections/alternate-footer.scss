@@ -1,0 +1,69 @@
+// FOOTER
+
+.footer {
+  border-top: 1px solid $disabled-1;
+
+  &__wrapper {
+    max-width: 1440px;
+    min-height: 428px;
+    margin: auto;
+    padding: 80px 88px 33px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    column-gap: 156px;
+    row-gap: 56px;
+  }
+
+  &__section-wrapper {
+    max-width: 224px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &__heading {
+    font-weight: 400;
+    margin: 0 0 8px;
+    font-size: 13px;
+    line-height: 1.38;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  &__navigation-list {
+    margin: 0;
+  }
+
+  &__store-info {
+    font-size: 16px;
+    line-height: 2;
+    letter-spacing: 1px;
+    font-style: normal;
+    color: $tertiary-1;
+    text-transform: capitalize;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &__social-links {
+    margin: 0;
+  }
+
+  &__copyright {
+    margin-top: auto;
+    font-size: 16px;
+    line-height: 1.25;
+    color: $tertiary-1;
+  }
+}
+
+@media (max-width: 1076px) {
+  .footer {
+    &__wrapper {
+      padding: 16px;
+    }
+  }
+}

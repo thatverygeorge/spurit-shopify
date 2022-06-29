@@ -1,0 +1,124 @@
+// PRODUCT CARD
+
+.product-card {
+  position: relative;
+  display: flex;
+  flex-flow: column wrap;
+  max-width: 248px;
+  border-radius: 5px;
+
+  &:focus-within,
+  &:hover {
+    outline-offset: 8px;
+    outline: 2px solid $primary;
+  }
+
+  * {
+    order: 2;
+  }
+
+  &__image {
+    order: 0;
+    margin-bottom: 20px;
+  }
+
+  &__heading {
+    order: 1;
+    font-weight: inherit;
+    font-size: 16px;
+    line-height: 1.25;
+    text-align: center;
+    color: $tertiary-3;
+    margin: 0 0 8px;
+
+    a {
+      display: inline-block;
+      color: inherit;
+      outline: none;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+      }
+
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  &__available-colors-list {
+    margin: 0 0 8px;
+  }
+
+  &__price {
+    font-size: 16px;
+    line-height: 1.25;
+    text-align: center;
+    color: $tertiary-3;
+    text-transform: uppercase;
+  }
+
+  &__tags-list {
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    display: flex;
+    overflow: hidden;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    max-height: 360px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 24px;
+  }
+}
+
+.available-colors-list {
+  padding: 0 2px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+
+  &__item {
+    width: 12px;
+    height: 12px;
+
+    &--brown {
+      background-color: $brown;
+    }
+
+    &--beige {
+      background-color: $beige;
+    }
+
+    &--pink {
+      background-color: $pink;
+    }
+
+    &--purple {
+      background-color: $purple;
+    }
+  }
+}
+
+.tags-list {
+  &__item {
+    display: inline-block;
+    max-width: 224px;
+    max-height: 22px;
+    padding: 3px 5px 4px;
+    background-color: $white;
+    font-size: 13px;
+    line-height: 1.23;
+    color: $tertiary-1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}

@@ -11,230 +11,35 @@
           >
             {{ product.title }}
           </h1>
-          <span class="order-details__price">
+          <span class="product-price order-details__price">
             <span class="visually-hidden">price:</span>
-            {{ shop.currency }} {{ product.price | money_without_trailing_zeros }}
+            <span class="product-price__currency">{{ shop.currency }}</span>
+            <span class="product-price__price">{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</span>
           </span>
           <span class="order-details__tax-info">tax included</span>
 
           {%- form 'product',
             product,
             class: 'order-details-form order-details__form',
-            aria-lable: 'order details'
+            aria-lable: 'order details',
+            data-product-handle: product.handle
           -%}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          {%- for option in product.options_with_values -%}
             <fieldset
-              class="order-details-form__fieldset order-details-form__fieldset--size"
+              class="order-details-form__fieldset order-details-form__fieldset--{{ option.name | downcase }}"
             >
-              <legend>size</legend>
-              <div>
-                <input
-                  class="order-details-form__input-size visually-hidden"
-                  type="radio"
-                  name="size"
-                  id="size-xs"
-                  value="xs"
-                />
-                <label for="size-xs">
-                  <span class="visually-hidden">size:</span>
-                  xs
-                </label>
-              </div>
+              <legend>{{ option.name }} {% if option.name == 'Color' %}- <span></span>{% endif %}</legend>
 
-              <div>
-                <input
-                  class="order-details-form__input-size visually-hidden"
-                  type="radio"
-                  name="size"
-                  id="size-s"
-                  value="s"
-                  checked
-                />
-                <label for="size-s">
-                  <span class="visually-hidden">size:</span>
-                  s
-                </label>
-              </div>
-
-              <div>
-                <input
-                  class="order-details-form__input-size visually-hidden"
-                  type="radio"
-                  name="size"
-                  id="size-m"
-                  value="m"
-                />
-                <label for="size-m">
-                  <span class="visually-hidden">size:</span>
-                  m
-                </label>
-              </div>
-
-              <div>
-                <input
-                  class="order-details-form__input-size visually-hidden"
-                  type="radio"
-                  name="size"
-                  id="size-l"
-                  value="l"
-                />
-                <label for="size-l">
-                  <span class="visually-hidden">size:</span>
-                  l
-                </label>
-              </div>
-
-              <div>
-                <input
-                  class="order-details-form__input-size visually-hidden"
-                  type="radio"
-                  name="size"
-                  id="size-xl"
-                  value="xl"
-                />
-                <label for="size-xl">
-                  <span class="visually-hidden">size:</span>
-                  xl
-                </label>
-              </div>
-
-              <div>
-                <input
-                  class="order-details-form__input-size visually-hidden"
-                  type="radio"
-                  name="size"
-                  id="size-2xl"
-                  value="2xl"
-                  disabled
-                />
-                <label for="size-2xl">
-                  <span class="visually-hidden">size:</span>
-                  2xl
-                </label>
-              </div>
+              {%- for value in option.values -%}
+                {%- case option.name -%}
+                  {%- when 'Size' -%}
+                    {%- render 'alternate-radio-input--size', option: option, value: value -%}
+                  {%- when 'Color' -%}
+                    {%- render 'alternate-radio-input--color', option: option, value: value -%}
+                  {%- endcase -%}
+              {%- endfor -%}
             </fieldset>
-
-            <fieldset
-              class="order-details-form__fieldset order-details-form__fieldset--color"
-            >
-              <legend>color - <span></span></legend>
-              <div class="order-details-form__input-wrapper">
-                <input
-                  class="order-details-form__input-color order-details-form__input-color--white visually-hidden"
-                  type="radio"
-                  name="color"
-                  id="color-white"
-                  value="white"
-                  checked
-                />
-                <label for="color-white">
-                  <span class="visually-hidden">color: white</span>
-                </label>
-                <span
-                  class="order-details-form__tooltip-color"
-                  aria-hidden="true"
-                >
-                  White latte
-                </span>
-              </div>
-
-              <div class="order-details-form__input-wrapper">
-                <input
-                  class="order-details-form__input-color order-details-form__input-color--black visually-hidden"
-                  type="radio"
-                  name="color"
-                  id="color-black"
-                  value="black"
-                />
-                <label for="color-black">
-                  <span class="visually-hidden">color: black</span>
-                </label>
-                <span
-                  class="order-details-form__tooltip-color"
-                  aria-hidden="true"
-                >
-                  Black latte
-                </span>
-              </div>
-
-              <div class="order-details-form__input-wrapper">
-                <input
-                  class="order-details-form__input-color order-details-form__input-color--gray visually-hidden"
-                  type="radio"
-                  name="color"
-                  id="color-gray"
-                  value="gray"
-                />
-                <label for="color-gray">
-                  <span class="visually-hidden">color: gray</span>
-                </label>
-                <span
-                  class="order-details-form__tooltip-color"
-                  aria-hidden="true"
-                >
-                  Gray latte
-                </span>
-              </div>
-
-              <div class="order-details-form__input-wrapper">
-                <input
-                  class="order-details-form__input-color order-details-form__input-color--purple visually-hidden"
-                  type="radio"
-                  name="color"
-                  id="color-purple"
-                  value="purple"
-                />
-                <label for="color-purple">
-                  <span class="visually-hidden">color: purple</span>
-                </label>
-                <span
-                  class="order-details-form__tooltip-color"
-                  aria-hidden="true"
-                >
-                  Purple latte
-                </span>
-              </div>
-
-              <div class="order-details-form__input-wrapper">
-                <input
-                  class="order-details-form__input-color order-details-form__input-color--pink visually-hidden"
-                  type="radio"
-                  name="color"
-                  id="color-pink"
-                  value="pink"
-                  disabled
-                />
-                <label for="color-pink">
-                  <span class="visually-hidden">color: pink</span>
-                </label>
-                <span
-                  class="order-details-form__tooltip-color"
-                  aria-hidden="true"
-                >
-                  Pink latte
-                </span>
-              </div>
-
-              <div class="order-details-form__input-wrapper">
-                <input
-                  class="order-details-form__input-color order-details-form__input-color--beige visually-hidden"
-                  type="radio"
-                  name="color"
-                  id="color-beige"
-                  value="beige"
-                  disabled
-                />
-                <label for="color-beige">
-                  <span class="visually-hidden">color: beige</span>
-                </label>
-                <span
-                  class="order-details-form__tooltip-color"
-                  aria-hidden="true"
-                >
-                  Beige latte
-                </span>
-              </div>
-            </fieldset>
+          {%- endfor -%}
 
             <fieldset class="order-details-form__fieldset order-details-form__fieldset--quantity">
               <legend>quantity</legend>
@@ -275,6 +80,7 @@
             <button
               type="submit"
               class="order-details-form__button order-details-form__button--add-to-cart"
+              {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}
             >
               add
               <span class="visually-hidden">{{ product.title | downcase }}</span>
@@ -318,8 +124,6 @@
             </div>
           {%- endif -%}
       </section>
-
-
 
 {% schema %}
 {

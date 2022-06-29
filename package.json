@@ -1,0 +1,91 @@
+{
+  "name": "georgiikirakosyan",
+  "version": "1.0.0",
+  "description": "[![Build status](https://github.com/shopify/dawn/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Shopify/dawn/actions/workflows/ci.yml?query=branch%3Amain) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?color=informational)](/.github/CONTRIBUTING.md)",
+  "private": true,
+  "scripts": {
+    "start": "npx webpack --config webpack.config.js --mode development --watch",
+    "build": "npx webpack --config webpack.config.js --mode production",
+    "stylelint": "npx stylelint \"src/styles/**/*.scss\"",
+    "stylelint-fix": "npx stylelint \"src/styles/**/*.scss\" --fix",
+    "eslint": "npx eslint \"src/scripts/**/*.js\"",
+    "eslint-fix": "npx eslint \"src/scripts/**/*.js\" --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thatverygeorge/spurit-shopify.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thatverygeorge/spurit-shopify/issues"
+  },
+  "homepage": "https://github.com/thatverygeorge/spurit-shopify#readme",
+  "devDependencies": {
+    "@shopify/babel-preset": "24.1.5",
+    "@shopify/browserslist-config": "^3.0.0",
+    "@shopify/eslint-plugin": "^41.3.0",
+    "@shopify/postcss-plugin": "^5.0.1",
+    "@shopify/prettier-config": "^1.1.2",
+    "@shopify/stylelint-plugin": "^11.0.1",
+    "@shopify/theme-sections": "^4.1.1",
+    "@shopify/theme-product-form": "^4.1.1",
+    "babel-core": "6.26.3",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "eslint": "^8.18.0",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.6.0",
+    "postcss-loader": "^7.0.0",
+    "prettier": "^2.7.1",
+    "resolve-url-loader": "^5.0.0",
+    "sass": "^1.52.3",
+    "sass-loader": "^13.0.0",
+    "stylelint": "^14.9.1",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "browserslist": [
+    "extends @shopify/browserslist-config",
+    "< 1%"
+  ],
+  "prettier": "@shopify/prettier-config",
+  "stylelint": {
+    "extends": [
+      "@shopify/stylelint-plugin",
+      "@shopify/stylelint-plugin/prettier"
+    ],
+    "reportNeedlessDisables": false,
+    "rules": {
+      "scss/selector-no-union-class-name": null
+    }
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:@shopify/esnext",
+      "plugin:@shopify/prettier"
+    ],
+    "env": {
+      "jest": true,
+      "browser": true,
+      "node": true
+    },
+    "globals": {
+      "Shopify": true,
+      "theme": true,
+      "BIS": true
+    },
+    "rules": {
+      "lines-around-comment": [
+        "error",
+        {
+          "beforeBlockComment": false
+        }
+      ],
+      "padded-blocks": [
+        "error",
+        "never"
+      ]
+    }
+  }
+}

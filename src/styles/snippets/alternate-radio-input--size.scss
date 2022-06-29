@@ -1,0 +1,53 @@
+// SIZE
+
+.order-details-form {
+  &__input-size {
+    + label {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      min-height: 40px;
+      padding: 4px;
+      border: 1px solid $disabled-1;
+      word-break: break-all;
+      font-size: 16px;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: $tertiary-3;
+      text-transform: uppercase;
+      background-color: $white;
+      cursor: pointer;
+    }
+
+    &:checked + label {
+      border-color: $tertiary-3;
+    }
+
+    &:focus-visible + label,
+    &:hover + label {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+
+    &:disabled + label {
+      cursor: default;
+      border-color: $color-f2;
+      background-color: $color-f2;
+      color: $color-bd;
+      outline: none;
+    }
+
+    &:disabled + label::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1px;
+      height: 55px;
+      background-color: $disabled-1;
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    }
+  }
+}

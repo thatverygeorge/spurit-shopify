@@ -1,3 +1,7 @@
+/* eslint-disable no-empty-function */
+
+import {register} from '@shopify/theme-sections';
+
 // CART
 class Cart {
   constructor(item) {
@@ -5,7 +9,7 @@ class Cart {
 
     this.cart = this.item.querySelector('span[aria-hidden=true]');
     this.accessibilityCart = this.item.querySelector(
-      'span[aria-live=polite][role=status]'
+      'span[aria-live=polite][role=status]',
     );
   }
 
@@ -15,13 +19,13 @@ class Cart {
   }
 }
 
-Shopify.theme.sections.register('alternate-header', {
+register('alternate-header', {
   cart: null,
 
-  handleCartUpdate: function (evt) {
+  handleCartUpdate(evt) {
     const header = new DOMParser().parseFromString(
       evt.detail.updatedHeader,
-      'text/html'
+      'text/html',
     );
 
     const targetSpan = header.querySelector('span[aria-hidden=true]');
@@ -32,22 +36,22 @@ Shopify.theme.sections.register('alternate-header', {
     }
   },
 
-  onLoad: function () {
+  onLoad() {
     const cartItem = document.querySelector('.site-navigation__item--cart');
     this.cart = new Cart(cartItem);
 
     window.addEventListener('cart:added', this.handleCartUpdate.bind(this));
   },
 
-  onUnload: function () {
+  onUnload() {
     window.removeEventListener('cart:added', this.handleCartUpdate);
   },
 
-  onSelect: function () {},
+  onSelect() {},
 
-  onDeselect: function () {},
+  onDeselect() {},
 
-  onBlockSelect: function () {},
+  onBlockSelect() {},
 
-  onBlockDeselect: function () {},
+  onBlockDeselect() {},
 });

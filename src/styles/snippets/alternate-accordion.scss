@@ -1,0 +1,95 @@
+// ACCORDION
+
+.product-description {
+  max-width: 728px;
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column wrap;
+
+  &__image {
+    display: flex;
+    margin-bottom: 61px;
+    align-self: center;
+  }
+
+  &__description-list {
+    width: 100%;
+    margin: 0;
+    border-top: 1px solid $disabled-1;
+
+    &:last-of-type {
+      border-bottom: 1px solid $disabled-1;
+    }
+  }
+
+  &__button {
+    position: relative;
+    width: 100%;
+    padding: 32px 32px 32px 0;
+    border: none;
+    background-color: transparent;
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    color: $tertiary-3;
+    text-transform: capitalize;
+    text-align: start;
+    cursor: pointer;
+    outline: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 0;
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 1px;
+      transform: translateY(-50%);
+    }
+
+    &[aria-expanded='true'] {
+      margin-bottom: 8px;
+
+      &::after {
+        background-image: url('/assets/icon-minus.svg');
+      }
+    }
+
+    &[aria-expanded='false'] {
+      &::after {
+        background-image: url('/assets/icon-plus.svg');
+      }
+    }
+
+    &:focus-visible::after,
+    &:hover::after {
+      outline: 2px solid $primary;
+      outline-offset: 4px;
+    }
+  }
+
+  &__description-definition {
+    margin: 0;
+
+    div {
+      display: none;
+      margin-bottom: 40px;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+@media (max-width: 1076px) {
+  .product-description {
+    &__image {
+      width: 236.5px;
+      height: 353.5px;
+    }
+  }
+}

@@ -1,60 +1,60 @@
 <header
-  class="header"
-  data-section-id="{{ section.id }}"
-  data-section-type="alternate-header"
+  class='header'
+  data-section-id='{{ section.id }}'
+  data-section-type='alternate-header'
 >
-  <div class="header__wrapper">
-    <a class="skip-to-content-link" href="#main">skip to content</a>
-    <a class="header__logo" href="/">
+  <div class='header__wrapper'>
+    <a class='skip-to-content-link' href='#main'>skip to content</a>
+    <a class='header__logo' href='/'>
       <img
-        src="{{ section.settings.header_logo_image | image_url }}"
-        width="139"
-        height="32"
-        alt=""
-        role="presentation"
-        loading="lazy"
+        src='{{ section.settings.header_logo_image | image_url }}'
+        width='139'
+        height='32'
+        alt=''
+        role='presentation'
+        loading='lazy'
       >
-      <span class="visually-hidden">home</span>
+      <span class='visually-hidden'>home</span>
     </a>
-    <nav class="site-navigation header__site-navigation" aria-label="main">
-      <ul class="site-navigation__list" role="list">
+    <nav class='site-navigation header__site-navigation' aria-label='main'>
+      <ul class='site-navigation__list' role='list'>
         {%- for link in section.settings.header_menu.links -%}
-          <li class="site-navigation__item">
-            <a href="{{ link.url }}">{{ link.title }}</a>
+          <li class='site-navigation__item'>
+            <a href='{{ link.url }}'>{{ link.title }}</a>
           </li>
         {%- endfor -%}
-        <li class="site-navigation__item">
-          <a href="{{ routes.search_url }}">search</a>
+        <li class='site-navigation__item'>
+          <a href='{{ routes.search_url }}'>search</a>
         </li>
-        <li class="site-navigation__item">
-          <a href="{{ routes.account_url }}">account</a>
+        <li class='site-navigation__item'>
+          <a href='{{ routes.account_url }}'>account</a>
         </li>
-        <li class="site-navigation__item site-navigation__item--cart">
-          <a href="{{ routes.cart_url }}">
-            <span aria-hidden="true">cart ({{ cart.item_count }})</span>
-            <span class="visually-hidden" aria-live="polite" role="status">items in cart: {{ cart.item_count }}</span>
+        <li class='site-navigation__item site-navigation__item--cart'>
+          <a href='{{ routes.cart_url }}'>
+            <span aria-hidden='true'>cart ({{ cart.item_count }})</span>
+            <span class='visually-hidden' aria-live='polite' role='status'>items in cart: {{ cart.item_count }}</span>
           </a>
         </li>
       </ul>
     </nav>
   </div>
 
-  <hr class="header__horizontal-rule">
+  <hr class='header__horizontal-rule'>
 
-  <div class="header__wrapper">
+  <div class='header__wrapper'>
     <nav
-      class="breadcrumbs-navigation header__breadcrumbs-navigation"
-      aria-label="breadcrumbs"
+      class='breadcrumbs-navigation header__breadcrumbs-navigation'
+      aria-label='breadcrumbs'
     >
-      <ol class="breadcrumbs-navigation__list" role="list">
-        <li class="breadcrumbs-navigation__item">
-          <a href="/home">Home</a>
+      <ol class='breadcrumbs-navigation__list' role='list'>
+        <li class='breadcrumbs-navigation__item'>
+          <a href='/home'>Home</a>
         </li>
-        <li class="breadcrumbs-navigation__item">
-          <a href="/women">Women</a>
+        <li class='breadcrumbs-navigation__item'>
+          <a href='/women'>Women</a>
         </li>
-        <li class="breadcrumbs-navigation__item">
-          <a role="link" aria-disabled="true" aria-current="page">
+        <li class='breadcrumbs-navigation__item breadcrumbs-navigation__item--current'>
+          <a role='link' aria-disabled='true' aria-current='page'>
             {{ product.title }}
           </a>
         </li>

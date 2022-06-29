@@ -1,15 +1,17 @@
-<footer class="footer">
-  <div class="footer__wrapper">
-    {%- if section.blocks.size > 0 -%}
-      {%- for block in section.blocks -%}
-        {%- case block.type -%}
-          {%- when 'footer_about' -%}
-            {%- render 'alternate-footer-about', block: block -%}
-          {%- when 'footer_menu' -%}
-            {%- render 'alternate-footer-menu', block: block -%}
-        {%- endcase -%}
-      {%- endfor -%}
-    {%- endif -%}
+<footer class='footer'>
+  <div class='footer__wrapper'>
+    {%- liquid
+      if section.blocks.size > 0
+        for block in section.blocks
+          case block.type
+            when 'footer_about'
+              render 'alternate-footer-about', block: block
+            when 'footer_menu'
+              render 'alternate-footer-menu', block: block
+          endcase
+        endfor
+      endif
+    -%}
   </div>
 </footer>
 

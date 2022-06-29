@@ -1,0 +1,114 @@
+// COLOR
+
+.order-details-form {
+  &__input-color {
+    + label {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      border: 1px solid $white;
+      background-color: $white;
+      cursor: pointer;
+    }
+
+    + label::after {
+      content: '';
+      display: block;
+      width: 34px;
+      height: 34px;
+    }
+
+    &--white + label::after {
+      background-color: $white;
+      border: 1px solid $disabled-1;
+    }
+
+    &--black + label::after {
+      background-color: $tertiary-3;
+      border: 1px solid $tertiary-3;
+    }
+
+    &--gray + label::after {
+      background-color: $color-ae;
+      border: 1px solid $color-ae;
+    }
+
+    &--purple + label::after {
+      background-color: $purple;
+      border: 1px solid $purple;
+    }
+
+    &--pink + label::after {
+      background-color: $pink;
+      border: 1px solid $pink;
+    }
+
+    &--beige + label::after {
+      background-color: $beige;
+      border: 1px solid $beige;
+    }
+
+    &:checked + label {
+      border-color: $tertiary-3;
+    }
+
+    &:focus-visible + label {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+
+    &:hover + label {
+      border-color: $disabled-1;
+    }
+
+    &:disabled + label {
+      cursor: default;
+      border: none;
+    }
+
+    &:disabled + label::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 1px;
+      height: 55px;
+      background-color: $disabled-1;
+      transform: translateX(-50%) translateY(-50%) rotate(45deg);
+    }
+
+    &:hover {
+      ~ .tooltip {
+        position: absolute;
+        bottom: 33px;
+        left: 27px;
+        display: inline-block;
+      }
+    }
+  }
+
+  &__input-wrapper {
+    position: relative;
+  }
+
+  &__tooltip-color {
+    z-index: 99;
+    display: none;
+    overflow: hidden;
+    max-width: 150px;
+    min-height: 23px;
+    padding: 2px;
+    border: 1px solid $disabled-1;
+    background-color: $white;
+
+    font-size: 13px;
+    line-height: 1.23;
+    text-align: center;
+    color: $tertiary-1;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
