@@ -12,31 +12,33 @@ class Accordion {
     this.button = button;
     this.id = this.button.getAttribute('aria-controls');
     this.description = document.getElementById(this.id);
+
+    this.toggle = this.toggle.bind(this);
   }
 
   init() {
-    this.button.addEventListener('click', this.toggleAccordion.bind(this));
+    this.button.addEventListener('click', this.toggle);
   }
 
   destroy() {
-    this.button.removeEventListener('click', this.toggleAccordion);
+    this.button.removeEventListener('click', this.toggle);
   }
 
-  openAccordion() {
+  expand() {
     this.button.setAttribute('aria-expanded', 'true');
     this.description.style.display = 'block';
   }
 
-  closeAccordion() {
+  collapse() {
     this.button.setAttribute('aria-expanded', 'false');
     this.description.style.display = 'none';
   }
 
-  toggleAccordion() {
+  toggle() {
     if (this.button.getAttribute('aria-expanded') === 'true') {
-      this.closeAccordion();
+      this.collapse();
     } else {
-      this.openAccordion();
+      this.expand();
     }
   }
 }
@@ -46,6 +48,8 @@ class OptionPicker {
   constructor(fieldset) {
     this.fieldset = fieldset;
     this.pickedOption = this.fieldset.querySelector('legend span');
+
+    this.handleOptionChange = this.handleOptionChange.bind(this);
   }
 
   init() {
@@ -53,10 +57,7 @@ class OptionPicker {
       'input[type=radio]:checked',
     );
     this.pickedOption.textContent = defaultOption.value;
-    this.fieldset.addEventListener(
-      'change',
-      this.handleOptionChange.bind(this),
-    );
+    this.fieldset.addEventListener('change', this.handleOptionChange);
   }
 
   destroy() {
@@ -85,18 +86,16 @@ class QuantityPicker {
 
     this.input = this.fieldset.querySelector('input[type=number]');
     this.error = this.fieldset.querySelector('span[class$=error--quantity]');
+
+    this.handleInput = this.handleInput.bind(this);
+    this.decreaseQuantity = this.decreaseQuantity.bind(this);
+    this.increaseQuantity = this.increaseQuantity.bind(this);
   }
 
   init() {
-    this.input.addEventListener('input', this.handleInput.bind(this));
-    this.buttonDecrease.addEventListener(
-      'click',
-      this.decreaseQuantity.bind(this),
-    );
-    this.buttonIncrease.addEventListener(
-      'click',
-      this.increaseQuantity.bind(this),
-    );
+    this.input.addEventListener('input', this.handleInput);
+    this.buttonDecrease.addEventListener('click', this.decreaseQuantity);
+    this.buttonIncrease.addEventListener('click', this.increaseQuantity);
   }
 
   destroy() {
@@ -183,10 +182,12 @@ class Form {
     this.quantityPicker = quantityPicker;
 
     this.error = this.form.querySelector('span[class$=error--form]');
+
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   // init() {
-  //   this.form.addEventListener('submit', this.handleSubmit.bind(this));
+  //   this.form.addEventListener('submit', this.handleSubmit);
   // }
 
   // destroy() {
@@ -349,13 +350,13 @@ register('alternate-main-product', {
     const button = evt.target.querySelector('.product-description__button');
     const id = button.getAttribute('aria-controls');
 
-    this.accordions[id].toggleAccordion();
+    this.accordions[id].toggle();
   },
 
   onBlockDeselect(evt) {
     const button = evt.target.querySelector('.product-description__button');
     const id = button.getAttribute('aria-controls');
 
-    this.accordions[id].toggleAccordion();
+    this.accordions[id].toggle();
   },
 });

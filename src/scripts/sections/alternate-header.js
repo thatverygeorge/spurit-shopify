@@ -40,7 +40,8 @@ register('alternate-header', {
     const cartItem = document.querySelector('.site-navigation__item--cart');
     this.cart = new Cart(cartItem);
 
-    window.addEventListener('cart:added', this.handleCartUpdate.bind(this));
+    this.handleCartUpdate = this.handleCartUpdate.bind(this);
+    window.addEventListener('cart:added', this.handleCartUpdate);
   },
 
   onUnload() {
