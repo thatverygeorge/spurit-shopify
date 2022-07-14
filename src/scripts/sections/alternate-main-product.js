@@ -3,6 +3,7 @@
 
 import {register} from '@shopify/theme-sections';
 import {getUrlWithVariant, ProductForm} from '@shopify/theme-product-form';
+import {formatMoney} from '@shopify/theme-currency';
 
 console.log("You are a curious one, aren't you?");
 
@@ -263,7 +264,10 @@ register('alternate-main-product', {
     const url = getUrlWithVariant(window.location.href, variant.id);
     window.history.replaceState({path: url}, '', url);
 
-    this.priceNode.textContent = variant.price.toString().slice(0, -2);
+    this.priceNode.textContent = formatMoney(
+      variant.price,
+      '{{ amount_no_decimals }}',
+    );
 
     if (variant.available) {
       this.buttonAddToCart.disabled = false;
