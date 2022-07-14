@@ -1,17 +1,19 @@
-<dl class="product-description__description-list" {{ block.shopify_attributes }}>
-  <dt class="product-description__description-term">
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+
+<dl class='product-description__description-list' {{ shopify_attributes }}>
+  <dt class='product-description__description-term'>
     <button
-      class="product-description__button"
-      type="button"
-      aria-expanded="false"
-      aria-controls="description-{{ block.id }}"
+      class='product-description__button'
+      type='button'
+      aria-expanded='false'
+      aria-controls='description-{{ id }}'
     >
-      {{ block.settings.product_accordion_heading }}
+      {{ heading }}
     </button>
   </dt>
-  <dd class="product-description__description-definition">
-    <div id="description-{{ block.id }}">
-      {{ block.settings.product_accordion_text }}
+  <dd class='product-description__description-definition'>
+    <div id='description-{{ id }}'>
+      {{ text }}
     </div>
   </dd>
 </dl>

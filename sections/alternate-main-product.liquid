@@ -115,11 +115,17 @@
             loading="lazy"
           />
 
-          {%- assign accordions = section.blocks | where: "type", "product_accordion" -%}
+          {%- assign accordions = section.blocks | where: "type", "accordion" -%}
           {%- if accordions.size > 0 -%}
             <div class="product-description__wrapper">
               {%- for block in accordions -%}
-                {%- render 'alternate-accordion', block: block -%}
+                {%-
+                  render 'alternate-accordion',
+                    shopify_attributes: block.shopify_attributes,
+                    id: block.id,
+                    heading: block.settings.heading,
+                    text: block.settings.text
+                -%}
               {%- endfor -%}
             </div>
           {%- endif -%}
@@ -136,17 +142,17 @@
   "blocks": [
     {
       "name": "Accordion",
-      "type": "product_accordion",
+      "type": "accordion",
       "settings": [
         {
           "type": "text",
-          "id": "product_accordion_heading",
+          "id": "heading",
           "label": "Heading",
           "default": "Sizing & Fit"
         },
         {
           "type": "richtext",
-          "id": "product_accordion_text",
+          "id": "text",
           "label": "Text"
         }
       ]
@@ -159,22 +165,16 @@
       },
       "blocks": [
         {
-          "type": "product_accordion"
+          "type": "accordion"
         },
         {
-          "type": "product_accordion"
+          "type": "accordion"
         },
         {
-          "type": "product_accordion"
+          "type": "accordion"
         }
       ]
     }
   ]
 }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}

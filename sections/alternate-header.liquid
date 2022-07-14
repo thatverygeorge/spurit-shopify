@@ -7,7 +7,7 @@
     <a class='skip-to-content-link' href='#main'>skip to content</a>
     <a class='header__logo' href='/'>
       <img
-        src='{{ section.settings.header_logo_image | image_url }}'
+        src='{{ section.settings.logo_image | image_url }}'
         width='139'
         height='32'
         alt=''
@@ -18,7 +18,7 @@
     </a>
     <nav class='site-navigation header__site-navigation' aria-label='main'>
       <ul class='site-navigation__list' role='list'>
-        {%- for link in section.settings.header_menu.links -%}
+        {%- for link in section.settings.menu.links -%}
           <li class='site-navigation__item'>
             <a href='{{ link.url }}'>{{ link.title }}</a>
           </li>
@@ -69,20 +69,14 @@
   "settings": [
     {
       "type": "image_picker",
-      "id": "header_logo_image",
+      "id": "logo_image",
       "label": "Logo image"
     },
     {
       "type": "link_list",
-      "id": "header_menu",
+      "id": "menu",
       "label": "Menu"
     }
   ]
 }
 {% endschema %}
-
-{% style %}{% endstyle %}
-
-{% javascript %}
-
-{% endjavascript %}

@@ -1,17 +1,26 @@
 <footer class='footer'>
   <div class='footer__wrapper'>
-    {%- liquid
-      if section.blocks.size > 0
-        for block in section.blocks
-          case block.type
-            when 'footer_about'
-              render 'alternate-footer-about', block: block
-            when 'footer_menu'
-              render 'alternate-footer-menu', block: block
-          endcase
-        endfor
-      endif
-    -%}
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'about' -%}
+            {%-
+              render 'alternate-footer-about',
+              heading: block.settings.heading,
+              text: block.settings.text,
+              facebook_link: block.settings.facebook_link,
+              instagram_link: block.settings.instagram_link,
+              copyright: block.settings.copyright
+            -%}
+          {%- when 'menu' -%}
+            {%-
+              render 'alternate-footer-menu',
+              heading: block.settings.heading,
+              link_list: block.settings.link_list
+            -%}
+        {%- endcase -%}
+      {%- endfor -%}
+    {%- endif -%}
   </div>
 </footer>
 
@@ -23,34 +32,34 @@
   "blocks": [
     {
       "name": "About",
-      "type": "footer_about",
+      "type": "about",
       "settings": [
         {
           "type": "text",
-          "id": "footer_about_heading",
+          "id": "heading",
           "label": "Heading",
           "default": "About"
         },
         {
           "type": "richtext",
-          "id": "footer_about_text",
+          "id": "text",
           "label": "Text"
         },
         {
           "type": "text",
-          "id": "footer_about_facebook_link",
+          "id": "facebook_link",
           "label": "Facebook link",
           "default": "Facebook"
         },
         {
           "type": "text",
-          "id": "footer_about_instagram_link",
+          "id": "instagram_link",
           "label": "Instagram link",
           "default": "Instagram"
         },
         {
           "type": "text",
-          "id": "footer_about_copyright",
+          "id": "copyright",
           "label": "Copyright",
           "default": "© Susparsa 2021"
         }
@@ -58,17 +67,17 @@
     },
     {
       "name": "Menu",
-      "type": "footer_menu",
+      "type": "menu",
       "settings": [
         {
           "type": "text",
-          "id": "footer_menu_heading",
+          "id": "heading",
           "label": "Heading",
           "default": "Useful links"
         },
         {
           "type": "link_list",
-          "id": "footer_menu_link_list",
+          "id": "link_list",
           "label": "Menu"
         }
       ]
@@ -76,9 +85,3 @@
   ]
 }
 {% endschema %}
-
-{% style %}{% endstyle %}
-
-{% javascript %}
-
-{% endjavascript %}

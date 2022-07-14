@@ -1,21 +1,21 @@
 <section
-  class="you-may-also-like main__you-may-also-like"
-  aria-labelledby="heading-you-may-also-like"
+  class='you-may-also-like main__you-may-also-like'
+  aria-labelledby='heading-you-may-also-like'
 >
   <h2
-    class="you-may-also-like__heading"
-    id="heading-you-may-also-like"
+    class='you-may-also-like__heading'
+    id='heading-you-may-also-like'
   >
-    {{ section.settings.recommendations_heading }}
+    {{ section.settings.heading }}
   </h2>
 
-  {%- assign collection = section.settings.recommendations_collection -%}
+  {%- assign collection = section.settings.collection -%}
   {%- if collection.all_products_count > 0 -%}
     <ul
-      class="product-carousel you-may-also-like__product-carousel"
-      role="list"
+      class='product-carousel you-may-also-like__product-carousel'
+      role='list'
     >
-      {%- for product in collection.products limit: section.settings.recommendations_number_of_products -%}
+      {%- for product in collection.products limit: section.settings.number_of_products -%}
         {%- render 'alternate-product-card', product: product -%}
       {%- endfor -%}
     </ul>
@@ -28,18 +28,18 @@
   "settings": [
     {
       "type": "text",
-      "id": "recommendations_heading",
+      "id": "heading",
       "label": "Heading",
       "default": "You may also like"
     },
     {
       "type": "collection",
-      "id": "recommendations_collection",
+      "id": "collection",
       "label": "Collection"
     },
     {
       "type": "range",
-      "id": "recommendations_number_of_products",
+      "id": "number_of_products",
       "min": 3,
       "max": 6,
       "step": 1,
@@ -51,17 +51,11 @@
     {
       "name": "Alternate recommendations",
       "settings": {
-        "recommendations_heading": "You may also like",
-        "recommendations_collection": "everything-everywhere-all-at-once",
-        "recommendations_number_of_products": 4
+        "heading": "You may also like",
+        "collection": "everything-everywhere-all-at-once",
+        "number_of_products": 4
       }
     }
   ]
 }
 {% endschema %}
-
-{% style %}{% endstyle %}
-
-{% javascript %}
-
-{% endjavascript %}

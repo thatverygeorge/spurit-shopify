@@ -1,26 +1,28 @@
-<div class="footer__section-wrapper">
-  <h2 class="footer__heading">{{ block.settings.footer_about_heading }}</h2>
-  <address class="footer__store-info">
-    {{ block.settings.footer_about_text }}
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+
+<div class='footer__section-wrapper'>
+  <h2 class='footer__heading'>{{ heading }}</h2>
+  <address class='footer__store-info'>
+    {{ text }}
   </address>
   <ul
-    class="social-links footer__social-links"
-    role="list"
-    aria-label="social links"
+    class='social-links footer__social-links'
+    role='list'
+    aria-label='social links'
   >
-    <li class="social-links__item social-links__item--facebook">
+    <li class='social-links__item social-links__item--facebook'>
       <a
-        href="{{ block.settings.footer_about_facebook_link }}"
-        target="_blank"
+        href='{{ facebook_link }}'
+        target='_blank'
       >
-        <span class="visually-hidden">our facebook page — opens in a new tab</span>
+        <span class='visually-hidden'>our facebook page — opens in a new tab</span>
       </a>
     </li>
-    <li class="social-links__item social-links__item--instagram">
-      <a href="{{ block.settings.footer_about_instagram_link }}" target="_blank">
-        <span class="visually-hidden">our instagram page — opens in a new tab</span>
+    <li class='social-links__item social-links__item--instagram'>
+      <a href='{{ instagram_link }}' target='_blank'>
+        <span class='visually-hidden'>our instagram page — opens in a new tab</span>
       </a>
     </li>
   </ul>
-  <small class="footer__copyright">{{ block.settings.footer_about_copyright }}</small>
+  <small class='footer__copyright'>{{ copyright }}</small>
 </div>
