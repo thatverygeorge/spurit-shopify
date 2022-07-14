@@ -1,0 +1,266 @@
+// MAIN
+
+.main {
+  padding: 16px 0 8px;
+
+  &__wrapper {
+    max-width: 1232px;
+    padding: 0 16px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 64px;
+    row-gap: 32px;
+
+    margin: 0 auto 100px;
+  }
+
+  &__product-description {
+    order: 0;
+  }
+
+  &__order-details {
+    order: 1;
+  }
+
+  &__you-may-also-like {
+    margin: 0 auto 100px;
+  }
+}
+
+// ORDER DETAILS FORM
+
+.order-details {
+  max-width: 408px;
+  flex-grow: 1;
+
+  &__heading {
+    font-size: 22px;
+    line-height: 1.23;
+    font-weight: inherit;
+    letter-spacing: 0.01em;
+    color: $tertiary-3;
+    margin: 0 0 24px;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__price {
+    font-size: 20px;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    color: $tertiary-3;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 24px;
+  }
+
+  &__tax-info {
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: 0.01em;
+    color: $tertiary-1;
+    display: block;
+    margin-bottom: 48px;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__description {
+    font-size: 18px;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    color: $tertiary-3;
+  }
+
+  &__form {
+    margin-bottom: 36px;
+  }
+}
+
+.order-details-form {
+  &__fieldset {
+    margin: 0 0 24px;
+    padding: 0;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+
+    &--size,
+    &--color {
+      gap: 12px;
+    }
+
+    legend {
+      margin: 0 0 12px;
+      font-size: 16px;
+      line-height: 1.25;
+      letter-spacing: 0.01em;
+      color: $tertiary-3;
+      text-transform: capitalize;
+    }
+  }
+
+  &__button {
+    width: 100%;
+    border: 1px solid $disabled-1;
+    background-color: $white;
+    padding: 15px;
+    outline: none;
+    margin-bottom: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.21;
+    word-break: break-all;
+    letter-spacing: 0.16em;
+    color: $tertiary-3;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &--blue {
+      border-color: $primary;
+      background-color: $primary;
+      color: $white;
+    }
+
+    &:focus-visible,
+    &:hover {
+      outline: 2px solid $primary;
+      outline-offset: 4px;
+    }
+
+    &:active {
+      outline-offset: 2px;
+    }
+
+    &:disabled {
+      outline: none;
+      opacity: 0.3;
+      cursor: default;
+    }
+  }
+
+  &__button-quantity {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-top: 1px solid $disabled-1;
+    border-bottom: 1px solid $disabled-1;
+    border-left: 1px solid $disabled-1;
+    background-color: $white;
+    font-size: 18px;
+    line-height: 1;
+    color: $tertiary-1;
+    padding: 5px;
+    cursor: pointer;
+    font-family: inherit;
+
+    &:last-of-type {
+      border-right: 1px solid $disabled-1;
+    }
+
+    &:focus-visible,
+    &:hover {
+      outline: 2px solid $primary;
+      outline-offset: -2px;
+    }
+
+    &:active {
+      outline-offset: -4px;
+    }
+
+    &:disabled {
+      outline: none;
+      opacity: 0.3;
+      cursor: default;
+    }
+  }
+
+  &__input-quantity {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    padding: 10px 14px;
+
+    border: none;
+    border-top: 1px solid $disabled-1;
+    border-bottom: 1px solid $disabled-1;
+    border-left: 1px solid $disabled-1;
+    transition: width 500ms ease-out;
+
+    appearance: textfield;
+    font-family: inherit;
+    font-size: 18px;
+    line-height: 1;
+    color: $tertiary-3;
+
+    outline: none;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      appearance: none;
+    }
+
+    &:focus-visible,
+    &:not(:disabled):hover {
+      width: 80px;
+      outline: 2px solid $primary;
+      outline-offset: -2px;
+    }
+
+    &:invalid {
+      outline: 2px solid $red;
+      outline-offset: -2px;
+    }
+
+    &:disabled {
+      outline: none;
+      opacity: 0.3;
+    }
+  }
+
+  &__error {
+    flex-basis: 100%;
+    display: block;
+    font-size: 18px;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+    color: $tertiary-3;
+
+    &--quantity {
+      &.active {
+        padding-top: 8px;
+      }
+    }
+
+    &--form {
+      &.active {
+        padding-bottom: 8px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1076px) {
+  .main {
+    &__wrapper {
+      margin-bottom: 32px;
+      flex-direction: column;
+    }
+
+    &__order-details {
+      max-width: 100%;
+    }
+
+    &__product-description {
+      max-width: 100%;
+    }
+
+    &__you-may-also-like {
+      margin-bottom: 32px;
+    }
+  }
+}

@@ -1,0 +1,35 @@
+// YOU MAY ALSO LIKE
+
+.you-may-also-like {
+  max-width: 1216px;
+  padding: 0 16px;
+
+  &__heading {
+    font-weight: inherit;
+    font-size: 22px;
+    line-height: 1.23;
+    letter-spacing: 0.01em;
+    text-align: center;
+    color: $primary;
+    margin: 0 0 64px;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &__product-carousel {
+    margin: 0;
+  }
+}
+
+// PRODUCT CAROUSEL
+
+.product-carousel {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 64px;
+}

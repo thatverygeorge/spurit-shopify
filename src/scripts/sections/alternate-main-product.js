@@ -1,4 +1,9 @@
-'use strict';
+/* eslint-disable no-empty-function */
+/* eslint-disable no-console */
+
+import {register} from '@shopify/theme-sections';
+import {getUrlWithVariant, ProductForm} from '@shopify/theme-product-form';
+import {formatMoney} from '@shopify/theme-currency';
 
 console.log("You are a curious one, aren't you?");
 
@@ -8,31 +13,33 @@ class Accordion {
     this.button = button;
     this.id = this.button.getAttribute('aria-controls');
     this.description = document.getElementById(this.id);
+
+    this.toggle = this.toggle.bind(this);
   }
 
   init() {
-    this.button.addEventListener('click', this.toggleAccordion.bind(this));
+    this.button.addEventListener('click', this.toggle);
   }
 
   destroy() {
-    this.button.removeEventListener('click', this.toggleAccordion);
+    this.button.removeEventListener('click', this.toggle);
   }
 
-  openAccordion() {
+  expand() {
     this.button.setAttribute('aria-expanded', 'true');
     this.description.style.display = 'block';
   }
 
-  closeAccordion() {
+  collapse() {
     this.button.setAttribute('aria-expanded', 'false');
     this.description.style.display = 'none';
   }
 
-  toggleAccordion() {
+  toggle() {
     if (this.button.getAttribute('aria-expanded') === 'true') {
-      this.closeAccordion();
+      this.collapse();
     } else {
-      this.openAccordion();
+      this.expand();
     }
   }
 }
@@ -42,17 +49,16 @@ class OptionPicker {
   constructor(fieldset) {
     this.fieldset = fieldset;
     this.pickedOption = this.fieldset.querySelector('legend span');
+
+    this.handleOptionChange = this.handleOptionChange.bind(this);
   }
 
   init() {
     const defaultOption = this.fieldset.querySelector(
-      'input[type=radio]:checked'
+      'input[type=radio]:checked',
     );
     this.pickedOption.textContent = defaultOption.value;
-    this.fieldset.addEventListener(
-      'change',
-      this.handleOptionChange.bind(this)
-    );
+    this.fieldset.addEventListener('change', this.handleOptionChange);
   }
 
   destroy() {
@@ -71,8 +77,8 @@ class OptionPicker {
 const QUANTITY_STEP = 1;
 const MIN_QUANTITY = 1;
 const MAX_QUANTITY = 9;
-
 const INPUT_DEFAULT_WIDTH = 40;
+
 class QuantityPicker {
   constructor(fieldset, buttonDecrease, buttonIncrease) {
     this.fieldset = fieldset;
@@ -81,18 +87,16 @@ class QuantityPicker {
 
     this.input = this.fieldset.querySelector('input[type=number]');
     this.error = this.fieldset.querySelector('span[class$=error--quantity]');
+
+    this.handleInput = this.handleInput.bind(this);
+    this.decreaseQuantity = this.decreaseQuantity.bind(this);
+    this.increaseQuantity = this.increaseQuantity.bind(this);
   }
 
   init() {
-    this.input.addEventListener('input', this.handleInput.bind(this));
-    this.buttonDecrease.addEventListener(
-      'click',
-      this.decreaseQuantity.bind(this)
-    );
-    this.buttonIncrease.addEventListener(
-      'click',
-      this.increaseQuantity.bind(this)
-    );
+    this.input.addEventListener('input', this.handleInput);
+    this.buttonDecrease.addEventListener('click', this.decreaseQuantity);
+    this.buttonIncrease.addEventListener('click', this.increaseQuantity);
   }
 
   destroy() {
@@ -179,15 +183,17 @@ class Form {
     this.quantityPicker = quantityPicker;
 
     this.error = this.form.querySelector('span[class$=error--form]');
+
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  init() {
-    this.form.addEventListener('submit', this.handleSubmit.bind(this));
-  }
+  // init() {
+  //   this.form.addEventListener('submit', this.handleSubmit);
+  // }
 
-  destroy() {
-    this.form.removeEventListener('submit', this.handleSubmit);
-  }
+  // destroy() {
+  //   this.form.removeEventListener('submit', this.handleSubmit);
+  // }
 
   showError(message = 'Something went wrong. Please try again later.') {
     this.error.textContent = message;
@@ -208,13 +214,13 @@ class Form {
     const id = formData.get('id');
     const quantity = formData.get('quantity');
 
-    fetch(Shopify.routes.root + 'cart/add.js', {
+    fetch(`${Shopify.routes.root}cart/add.js`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        items: [{ id, quantity }],
+        items: [{id, quantity}],
         sections: 'alternate-header',
       }),
     })
@@ -241,78 +247,120 @@ class Form {
   }
 }
 
-Shopify.theme.sections.register('alternate-main-product', {
+register('alternate-main-product', {
   accordions: {},
   colorPicker: null,
   quantityPicker: null,
   form: null,
+  productForm: null,
+  priceNode: null,
+  buttonAddToCart: null,
 
-  onLoad: function () {
-    const accordionButtons = document.querySelectorAll(
-      '.product-description__button'
+  handleOptionChange(evt) {
+    const variant = evt.dataset.variant;
+
+    if (!variant) return;
+
+    const url = getUrlWithVariant(window.location.href, variant.id);
+    window.history.replaceState({path: url}, '', url);
+
+    this.priceNode.textContent = formatMoney(
+      variant.price,
+      '{{ amount_no_decimals }}',
     );
 
-    for (var i = 0; i < accordionButtons.length; i++) {
+    if (variant.available) {
+      this.buttonAddToCart.disabled = false;
+    } else {
+      this.buttonAddToCart.disabled = true;
+    }
+  },
+
+  onLoad() {
+    this.priceNode = document.querySelector('.product-price__price');
+    this.buttonAddToCart = document.querySelector('button[class$=add-to-cart]');
+
+    const accordionButtons = document.querySelectorAll(
+      '.product-description__button',
+    );
+
+    for (let i = 0; i < accordionButtons.length; i++) {
       const accordion = new Accordion(accordionButtons[i]);
       this.accordions[accordion.id] = accordion;
       this.accordions[accordion.id].init();
     }
 
     const colorFieldset = document.querySelector(
-      '.order-details-form__fieldset--color'
+      '.order-details-form__fieldset--color',
     );
 
     this.colorPicker = new OptionPicker(colorFieldset);
     this.colorPicker.init();
 
     const quantityFieldset = document.querySelector(
-      '.order-details-form__fieldset--quantity'
+      '.order-details-form__fieldset--quantity',
     );
     const buttonDecreaseQuantity = quantityFieldset.querySelector(
-      '.order-details-form__button-quantity--decrease'
+      '.order-details-form__button-quantity--decrease',
     );
     const buttonIncreaseQuantity = quantityFieldset.querySelector(
-      '.order-details-form__button-quantity--increase'
+      '.order-details-form__button-quantity--increase',
     );
 
     this.quantityPicker = new QuantityPicker(
       quantityFieldset,
       buttonDecreaseQuantity,
-      buttonIncreaseQuantity
+      buttonIncreaseQuantity,
     );
     this.quantityPicker.init();
 
     const formNode = document.querySelector('.order-details-form');
 
     this.form = new Form(formNode, this.quantityPicker);
-    this.form.init();
+    // this.form.init();
+
+    const productHandle = formNode.dataset.productHandle;
+
+    fetch(`${Shopify.routes.root}products/${productHandle}.js`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((productJSON) => {
+        this.productForm = new ProductForm(formNode, productJSON, {
+          onOptionChange: this.handleOptionChange.bind(this),
+          onFormSubmit: this.form.handleSubmit.bind(this.form),
+        });
+      })
+      .catch(console.error);
   },
 
-  onUnload: function () {
-    for (let accordion of Object.values(this.accordions)) {
+  onUnload() {
+    for (const accordion of Object.values(this.accordions)) {
       accordion.destroy();
     }
 
     this.colorPicker.destroy();
     this.quantityPicker.destroy();
-    this.form.destroy();
+    // this.form.destroy();
+
+    this.productForm.destroy();
   },
 
-  onSelect: function () {},
+  onSelect() {},
 
-  onDeselect: function () {},
+  onDeselect() {},
 
-  onBlockSelect: function (evt) {
+  onBlockSelect(evt) {
     const button = evt.target.querySelector('.product-description__button');
     const id = button.getAttribute('aria-controls');
 
-    this.accordions[id].toggleAccordion();
+    this.accordions[id].toggle();
   },
 
-  onBlockDeselect: function (evt) {
+  onBlockDeselect(evt) {
     const button = evt.target.querySelector('.product-description__button');
     const id = button.getAttribute('aria-controls');
 
-    this.accordions[id].toggleAccordion();
+    this.accordions[id].toggle();
   },
 });

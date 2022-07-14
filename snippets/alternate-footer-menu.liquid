@@ -1,9 +1,11 @@
-<div class="footer__section-wrapper">
-  <h2 class="footer__heading">{{ block.settings.footer_menu_heading }}</h2>
-  <ul class="footer-navigation-list footer__navigation-list" role="list">
-    {%- for link in block.settings.footer_menu_link_list.links -%}
-      <li class="footer-navigation-list__item">
-        <a href="{{ link.url }}">{{ link.title }}</a>
+{% comment %}theme-check-disable UndefinedObject{% endcomment %}
+
+<div class='footer__section-wrapper'>
+  <h2 class='footer__heading'>{{ heading }}</h2>
+  <ul class='footer-navigation-list footer__navigation-list' role='list'>
+    {%- for link in link_list.links -%}
+      <li class='footer-navigation-list__item'>
+        <a href='{{ link.url }}'>{{ link.title }}</a>
       </li>
     {%- endfor -%}
   </ul>

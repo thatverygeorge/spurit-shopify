@@ -1,30 +1,22 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}">
+<html lang='{{ request.locale.iso_code }}'>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="{{ 'index.css' | asset_url }}">
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <link rel='stylesheet' href='{{ 'theme.min.css' | asset_url }}'>
     {{ content_for_header }}
   </head>
 
   <body>
     {%- section 'alternate-header' -%}
 
-    <main class="main" id="main">
+    <main class='main' id='main'>
       {{ content_for_layout }}
     </main>
 
     {%- section 'alternate-footer' -%}
 
-    <script src="{{ 'theme-sections.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'alternate-main-product.js' | asset_url }}" defer></script>
-    <script src="{{ 'alternate-header.js' | asset_url }}" defer></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        Shopify.theme.sections.load('alternate-main-product');
-        Shopify.theme.sections.load('alternate-header');
-      });
-    </script>
+    <script src='{{ 'theme.min.js' | asset_url }}' defer></script>
   </body>
 </html>

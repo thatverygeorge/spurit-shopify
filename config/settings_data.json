@@ -99,14 +99,13 @@
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
-        "settings": {
-        }
+        "settings": {}
       },
       "header": {
         "type": "header",
         "settings": {
           "color_scheme": "background-1",
-          "logo": "shopify:\/\/shop_images\/logo-susparsa.png",
+          "logo": "shopify://shop_images/logo-susparsa.png",
           "logo_width": 90,
           "logo_position": "middle-left",
           "menu": "main-menu",
@@ -127,9 +126,7 @@
             }
           }
         },
-        "block_order": [
-          "094979f2-6a88-4c7d-b085-b9e11abdcc9f"
-        ],
+        "block_order": ["094979f2-6a88-4c7d-b085-b9e11abdcc9f"],
         "settings": {
           "color_scheme": "background-1",
           "newsletter_enable": true,
@@ -159,35 +156,35 @@
       "alternate-header": {
         "type": "alternate-header",
         "settings": {
-          "header_logo_image": "shopify:\/\/shop_images\/logo-susparsa.png",
-          "header_menu": "alternate-header-menu"
+          "logo_image": "shopify://shop_images/logo-susparsa.png",
+          "menu": "alternate-header-menu"
         }
       },
       "alternate-footer": {
         "type": "alternate-footer",
         "blocks": {
           "e4f15511-f605-4964-a5c3-bd3d829038d9": {
-            "type": "footer_about",
+            "type": "about",
             "settings": {
-              "footer_about_heading": "About",
-              "footer_about_text": "<p>Susparsa Store<br\/>Geneva, Switzerland<br\/><\/p>",
-              "footer_about_facebook_link": "https:\/\/www.facebook.com\/Susparsa-106591638503740",
-              "footer_about_instagram_link": "https:\/\/www.instagram.com\/susparsa\/",
-              "footer_about_copyright": "© Susparsa 2021"
+              "heading": "About",
+              "text": "<p>Susparsa Store<br/>Geneva, Switzerland<br/></p>",
+              "facebook_link": "https://www.facebook.com/Susparsa-106591638503740",
+              "instagram_link": "https://www.instagram.com/susparsa/",
+              "copyright": "© Susparsa 2021"
             }
           },
           "d09c4ece-5621-4428-b7c1-c911579a4171": {
-            "type": "footer_menu",
+            "type": "menu",
             "settings": {
-              "footer_menu_heading": "Company",
-              "footer_menu_link_list": "alternate-footer-menu-company"
+              "heading": "Company",
+              "link_list": "alternate-footer-menu-company"
             }
           },
           "772d2c1a-6106-46b5-bda2-c62993b4387e": {
-            "type": "footer_menu",
+            "type": "menu",
             "settings": {
-              "footer_menu_heading": "Useful links",
-              "footer_menu_link_list": "alternate-footer-menu-useful-links"
+              "heading": "Useful links",
+              "link_list": "alternate-footer-menu-useful-links"
             }
           }
         },
@@ -196,13 +193,10 @@
           "d09c4ece-5621-4428-b7c1-c911579a4171",
           "772d2c1a-6106-46b5-bda2-c62993b4387e"
         ],
-        "settings": {
-        }
+        "settings": {}
       }
     },
-    "content_for_index": [
-
-    ]
+    "content_for_index": []
   },
   "presets": {
     "Default": {
@@ -315,11 +309,8 @@
               }
             }
           },
-          "block_order": [
-            "announcement-bar-0"
-          ],
-          "settings": {
-          }
+          "block_order": ["announcement-bar-0"],
+          "settings": {}
         },
         "header": {
           "type": "header",
@@ -354,15 +345,11 @@
               "type": "text",
               "settings": {
                 "heading": "Our mission",
-                "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+                "subtext": "<p>Share contact information, store details, and brand content with your customers.</p>"
               }
             }
           },
-          "block_order": [
-            "footer-0",
-            "footer-1",
-            "footer-2"
-          ],
+          "block_order": ["footer-0", "footer-1", "footer-2"],
           "settings": {
             "color_scheme": "background-1",
             "newsletter_enable": true,
